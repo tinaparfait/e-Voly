@@ -13,4 +13,7 @@ final class VegetableController extends AbstractController
     {
         return $this->render('vegetable/vegetable.html.twig');
     }
+
+    // Affiche la liste de tout les légumes
+
 }

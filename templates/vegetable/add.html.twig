@@ -1,0 +1,90 @@
+{% extends "client_layout/master.html.twig" %}
+
+{% block title %}
+	Ajouter un Légume
+{% endblock %}
+
+{% block content %}
+
+	<!-- Page Header Start -->
+	<div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
+		<div class="container">
+			<h1 class="display-3 mb-3 animated slideInDown">Guides</h1>
+			<nav aria-label="breadcrumb animated slideInDown">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item">
+						<a class="text-body" href="{{ path('app_home_client') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item text-dark active" aria-current="page">Guides</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<!-- Page Header End -->
+	<div class="container d-flex justify-content-center align-items-center mt-3" style="min-height: 100vh;">
+		<div class="col-md-9">
+			<div class="card shadow-sm">
+				<div class="card-header text-center">
+					<h4>Ajouter un légume</h4>
+				</div>
+				<div class="card-body">
+					{{ form_start(form) }}
+
+					{# Section 1 : Infos générales #}
+					<h5 class="mb-3">Informations générales</h5>
+					<div class="row">
+						<div class="col-md-6">
+							{{ form_row(form.name, {'attr': {'class': 'form-control rounded-pill', 'placeholder': 'Nom du légume'}}) }}
+						</div>
+						<div class="col-md-6">
+							{{ form_row(form.scientificName, {'attr': {'class': 'form-control rounded-pill', 'placeholder': 'Nom scientifique'}}) }}
+						</div>
+					</div>
+					{{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+					{{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
+
+					<hr>
+
+					{# Section 2 : Conditions de culture #}
+					<h5 class="mb-3">Conditions de culture</h5>
+					<div class="row">
+						<div class="col-md-4">
+							{{ form_row(form.difficulty, {'attr': {'class': 'form-control rounded-pill'}}) }}
+						</div>
+						<div class="col-md-4">
+							{{ form_row(form.soilType, {'attr': {'class': 'form-control rounded-pill'}}) }}
+						</div>
+						<div class="col-md-4">
+							{{ form_row(form.sunlight, {'attr': {'class': 'form-control rounded-pill'}}) }}
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							{{ form_row(form.watering, {'attr': {'class': 'form-control rounded-pill'}}) }}
+						</div>
+						<div class="col-md-3">
+							{{ form_row(form.germinationDays, {'attr': {'class': 'form-control'}}) }}
+						</div>
+						<div class="col-md-3">
+							{{ form_row(form.harvestDays, {'attr': {'class': 'form-control'}}) }}
+						</div>
+					</div>
+
+					<hr>
+
+					{# Section 3 : Relations #}
+					<h5 class="mb-3">Relations</h5>
+					{{ form_row(form.category, {'attr': {'class': 'form-select'}}) }}
+					{{ form_row(form.diseases, {'attr': {'class': 'form-select', 'multiple': 'multiple'}}) }}
+					{{ form_row(form.seasons, {'attr': {'class': 'form-select', 'multiple': 'multiple'}}) }}
+
+					<div class="text-center mt-4">
+						{{ form_row(form.submit, {'attr': {'class': 'btn btn-primary w-100 rounded-pill'}}) }}
+					</div>
+
+					{{ form_end(form) }}
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

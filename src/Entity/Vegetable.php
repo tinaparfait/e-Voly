@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\VegetableRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -85,6 +86,8 @@ class Vegetable
         $this->tips = new ArrayCollection();
         $this->diseases = new ArrayCollection();
         $this->seasons = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -234,6 +237,11 @@ class Vegetable
         $this->updatedAt = $updatedAt;
 
         return $this;
+    }
+
+    public function onPreUpdate(): void
+    {
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getCategory(): ?Category

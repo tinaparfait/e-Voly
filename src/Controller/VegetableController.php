@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Vegetable;
 use App\Form\VegetableType;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,9 +23,14 @@ final class VegetableController extends AbstractController
 
     // Affiche tout listes de légumes
     #[Route('/', name: 'app_vegetable_client')]
-    public function index(): Response
+    public function index(ManagerRegistry $doctrine): Response
     {
-        return $this->render('vegetable/vegetable.html.twig');
+        $repository = $doctrine->getRepository(Vegetable::class);
+        $vegetable = $repository->findAll();
+
+        return $this->render('vegetable/vegetable.html.twig', [
+            'vegetables' => $vegetable,
+        ]);
     }
 
     // Une méthode qui permet d'ajouté un légume

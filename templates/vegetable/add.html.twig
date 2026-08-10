@@ -9,13 +9,13 @@
 	<!-- Page Header Start -->
 	<div class="container-fluid page-header wow fadeIn" data-wow-delay="0.1s">
 		<div class="container">
-			<h1 class="display-3 mb-3 animated slideInDown">Guides</h1>
+			<h1 class="display-3 mb-3 animated slideInDown">Ajouter Légume</h1>
 			<nav aria-label="breadcrumb animated slideInDown">
 				<ol class="breadcrumb mb-0">
 					<li class="breadcrumb-item">
-						<a class="text-body" href="{{ path('app_home_client') }}">Accueil</a>
+						<a class="text-body" href="{{ path('app_vegetable_client') }}">Légume</a>
 					</li>
-					<li class="breadcrumb-item text-dark active" aria-current="page">Guides</li>
+					<li class="breadcrumb-item text-dark active" aria-current="page">Ajouter</li>
 				</ol>
 			</nav>
 		</div>
@@ -34,13 +34,13 @@
 					<h5 class="mb-3">Informations générales</h5>
 					<div class="row">
 						<div class="col-md-6">
-							{{ form_row(form.name, {'attr': {'class': 'form-control rounded-pill', 'placeholder': 'Nom du légume'}}) }}
+							{{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
 						</div>
 						<div class="col-md-6">
-							{{ form_row(form.scientificName, {'attr': {'class': 'form-control rounded-pill', 'placeholder': 'Nom scientifique'}}) }}
+							{{ form_row(form.scientificName, {'attr': {'class': 'form-control'}}) }}
 						</div>
 					</div>
-					{{ form_row(form.description, {'attr': {'class': 'form-control', 'placeholder': 'Description'}}) }}
+					{{ form_row(form.description, {'attr': {'class': 'form-control'}}) }}
 					{{ form_row(form.image, {'attr': {'class': 'form-control'}}) }}
 
 					<hr>
@@ -49,18 +49,18 @@
 					<h5 class="mb-3">Conditions de culture</h5>
 					<div class="row">
 						<div class="col-md-4">
-							{{ form_row(form.difficulty, {'attr': {'class': 'form-control rounded-pill'}}) }}
+							{{ form_row(form.difficulty, {'attr': {'class': 'form-control'}}) }}
 						</div>
 						<div class="col-md-4">
-							{{ form_row(form.soilType, {'attr': {'class': 'form-control rounded-pill'}}) }}
+							{{ form_row(form.soilType, {'attr': {'class': 'form-control'}}) }}
 						</div>
 						<div class="col-md-4">
-							{{ form_row(form.sunlight, {'attr': {'class': 'form-control rounded-pill'}}) }}
+							{{ form_row(form.sunlight, {'attr': {'class': 'form-control'}}) }}
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6">
-							{{ form_row(form.watering, {'attr': {'class': 'form-control rounded-pill'}}) }}
+							{{ form_row(form.watering, {'attr': {'class': 'form-control'}}) }}
 						</div>
 						<div class="col-md-3">
 							{{ form_row(form.germinationDays, {'attr': {'class': 'form-control'}}) }}
@@ -79,7 +79,7 @@
 					{{ form_row(form.seasons, {'attr': {'class': 'form-select', 'multiple': 'multiple'}}) }}
 
 					<div class="text-center mt-4">
-						{{ form_row(form.submit, {'attr': {'class': 'btn btn-primary w-100 rounded-pill'}}) }}
+						{{ form_row(form.submit, {'attr': {'class': 'btn btn-secondary w-50 rounded-pill'}}) }}
 					</div>
 
 					{{ form_end(form) }}

@@ -31,6 +31,13 @@
 						<p>Tempor ut dolore lorem kasd vero ipsum sit eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
 					</div>
 				</div>
+				<div class="text-start">
+					<a href="{{ path('app_add_vegetable') }}" class="btn btn-warning mb-3 rounded-pill d-flex align-items-center" style="width:200px; color:white; text-decoration:none;">
+						<i class="bi bi-plus-circle me-2"></i>
+						Ajouter un légume
+					</a>
+				</div>
+
 				<div class="col-lg-8 text-start wow slideInRight" data-wow-delay="0.1s">
 					<ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
 						<li class="nav-item me-2">
@@ -60,21 +67,17 @@
 							<div class="col-xl-3 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
 								<div class="product-item">
 									<div class="position-relative bg-light overflow-hidden">
-										<img class="img-fluid w-100" src="{{ asset('client/img/product-1.jpg') }}" alt="">
+										<img class="img-fluid w-100" src="{{ asset('uploads/' ~ vegetable.image) }}" alt="Photo de {{ vegetable.name }}">
 										<div class="bg-secondary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">New</div>
 									</div>
 									<div class="text-center p-4">
 										<a class="d-block h5 mb-2" href="">{{ vegetable.name }}</a>
-										<span class="text-primary me-1">{{ vegetable.watering }}</span>
+										<span class="text me-1">{{ vegetable.watering }}</span>
 									</div>
 									<div class="d-flex border-top">
-										<small class="w-50 text-center border-end py-2">
+										<small class="w-100 text-center border-end py-2">
 											<a class="text-body" href="">
 												<i class="fa fa-eye text-primary me-2"></i>View detail</a>
-										</small>
-										<small class="w-50 text-center py-2">
-											<a class="text-body" href="">
-												<i class="fa fa-shopping-bag text-primary me-2"></i>Add to cart</a>
 										</small>
 									</div>
 								</div>

@@ -54,10 +54,6 @@ class VegetableType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
             ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Ajouter',
-                'attr' => ['class' => 'btn btn-primary']
-            ])
 
         ;
     }

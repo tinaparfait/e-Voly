@@ -65,11 +65,29 @@ final class VegetableController extends AbstractController
             $this->em->persist($vegetable);
             $this->em->flush();
 
-            return $this->redirectToRoute('app_vegetable_client');
+            return $this->redirectToRoute('app_vegetable_list');
         }
 
         return $this->render('vegetable/add.html.twig', [
             'form' => $form->createView(),
+        ]);
+    }
+
+    // Une méthode qui permet de modifier un légume
+    #[Route('/modifier/{id}', name: 'app_vegetable_edit')]
+    public function edit(Vegetable $vegetable, Request $request): Response
+    {
+        $form = $this->createForm(VegetableType::class, $vegetable);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->em->flush();
+            return $this->redirectToRoute('app_vegetable_list');
+        }
+
+        return $this->render('vegetable/edit.html.twig', [
+            'form' => $form->createView(),
+            'vegetable' => $vegetable,
         ]);
     }
 }

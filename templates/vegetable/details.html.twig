@@ -1,0 +1,134 @@
+{% extends "client_layout/master.html.twig" %}
+
+{% block title %}Détails du légume
+{% endblock %}
+
+{% block content %}
+	<!-- Page Header Start -->
+	<div class="container-fluid page-header mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container">
+			<h1 class="display-3 mb-3 animated slideInDown">Légumes</h1>
+			<nav aria-label="breadcrumb animated slideInDown">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item">
+						<a class="text-body" href="{{ path('app_home_client') }}">Accueil</a>
+					</li>
+					<li class="breadcrumb-item text-dark active" aria-current="page">Légumes</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+	<!-- Page Header End -->
+
+	<div class="container my-5">
+		<div class="row justify-content-center">
+			<div class="col-lg-10">
+				<div
+					class="card shadow-lg border-0 rounded-4 overflow-hidden">
+
+					{# Image principale #}
+					{% if vegetable.image %}
+						<img src="{{ asset('uploads/' ~ vegetable.image) }}" class="card-img-top img-fluid" alt="Image de {{ vegetable.name }}">
+					{% else %}
+						<div class="bg-light text-center py-5">
+							<i class="bi bi-flower3 text-success" style="font-size:4rem;"></i>
+							<p class="text-muted">Pas d’image disponible</p>
+						</div>
+					{% endif %}
+
+					<div class="card-body p-5">
+						<h1 class="text-center text-success fw-bold mb-3">
+							{{ vegetable.name }}
+						</h1>
+						{% if vegetable.scientificName %}
+							<h5 class="text-center fst-italic text-muted mb-4">
+								{{ vegetable.scientificName }}
+							</h5>
+						{% endif %}
+
+						<p class="lead mb-4 text-justify">
+							{{ vegetable.description }}
+						</p>
+
+						<div class="row g-4">
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Difficulté :</strong>
+									<span class="badge bg-warning text-dark">{{ vegetable.difficulty }}</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Type de sol :</strong>
+									{{ vegetable.soilType ?? 'Non précisé' }}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Exposition :</strong>
+									{{ vegetable.sunlight ?? 'Non précisé' }}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Arrosage :</strong>
+									{{ vegetable.watering ?? 'Non précisé' }}
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Germination :</strong>
+									{{ vegetable.germinationDays ?? 'N/A' }}
+									jours
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="p-3 bg-light rounded">
+									<strong>Récolte :</strong>
+									{{ vegetable.harvestDays ?? 'N/A' }}
+									jours
+								</div>
+							</div>
+						</div>
+
+						<hr class="my-4">
+
+						<div class="mb-3">
+							<strong>Catégorie :</strong>
+							<span class="badge bg-primary">{{ vegetable.category ? vegetable.category.name : 'Non précisée' }}</span>
+						</div>
+
+						<div class="mb-3">
+							<strong>Maladies :</strong>
+							{% if vegetable.diseases|length > 0 %}
+								{% for disease in vegetable.diseases %}
+									<span class="badge bg-danger me-1">{{ disease.name }}</span>
+								{% endfor %}
+							{% else %}
+								<span class="text-muted">Aucune maladie associée</span>
+							{% endif %}
+						</div>
+
+						<div class="mb-3">
+							<strong>Saisons :</strong>
+							{% if vegetable.seasons|length > 0 %}
+								{% for season in vegetable.seasons %}
+									<span class="badge bg-info text-dark me-1">{{ season.name }}</span>
+								{% endfor %}
+							{% else %}
+								<span class="text-muted">Non spécifiées</span>
+							{% endif %}
+						</div>
+
+						<div class="text-center mt-4">
+							<a href="{{ path('app_vegetable_list') }}" class="btn btn-success btn-lg rounded-pill px-5">
+								<i class="bi bi-arrow-left-circle"></i>
+								Retour à la liste
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

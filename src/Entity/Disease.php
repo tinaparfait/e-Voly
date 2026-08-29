@@ -40,7 +40,7 @@ class Disease
     /**
      * @var Collection<int, Vegetable>
      */
-    #[ORM\ManyToMany(targetEntity: Vegetable::class, inversedBy: 'diseases')]
+    #[ORM\ManyToMany(targetEntity: Vegetable::class, mappedBy: 'diseases')]
     private Collection $vegetable;
 
     public function __construct()

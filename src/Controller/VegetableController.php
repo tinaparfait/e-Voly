@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+use function PHPUnit\Framework\throwException;
+
 #[Route('/légume')]
 final class VegetableController extends AbstractController
 {
@@ -36,16 +38,6 @@ final class VegetableController extends AbstractController
             'vegetables' => $vegetable,
         ]);
     }
-
-    // Afficher un légume particulier
-    #[Route('/{id}', name: 'app_vegetable_details')]
-    public function details(Vegetable $vegetable): Response
-    {
-        return $this->render('vegetable/details.html.twig', [
-            'vegetable' => $vegetable,
-        ]);
-    }
-
 
     // Une méthode qui permet d'ajouté un légume
     #[Route('/ajouter', name: 'app_add_vegetable')]
@@ -87,6 +79,35 @@ final class VegetableController extends AbstractController
 
         return $this->render('vegetable/edit.html.twig', [
             'form' => $form->createView(),
+            'vegetable' => $vegetable,
+        ]);
+    }
+
+    // Une méthode qui permet de supprimer un légume
+    #[Route('/supprimer/{id}', name: 'app_vegetable_delete')]
+    public function delete(int $id): Response
+    {
+        // récupere le légume à supprimer
+        $repository = $this->doctrine->getRepository(Vegetable::class);
+        $vegetable = $repository->find($id);
+
+        if ($vegetable) {
+            $this->em->remove($vegetable);
+            $this->em->flush();
+
+            return $this->redirectToRoute('app_vegetable_list');
+        } else {
+            return new Response(
+                "<p>Légume n'existe pas</p>"
+            );
+        }
+    }
+
+    // Afficher un légume particulier
+    #[Route('/{id}', name: 'app_vegetable_details')]
+    public function details(Vegetable $vegetable): Response
+    {
+        return $this->render('vegetable/details.html.twig', [
             'vegetable' => $vegetable,
         ]);
     }

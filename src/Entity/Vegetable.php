@@ -71,13 +71,13 @@ class Vegetable
     /**
      * @var Collection<int, Disease>
      */
-    #[ORM\ManyToMany(targetEntity: Disease::class, mappedBy: 'vegetable')]
+    #[ORM\ManyToMany(targetEntity: Disease::class, inversedBy: 'vegetable')]
     private Collection $diseases;
 
     /**
      * @var Collection<int, Season>
      */
-    #[ORM\ManyToMany(targetEntity: Season::class, mappedBy: 'vegetable')]
+    #[ORM\ManyToMany(targetEntity: Season::class, inversedBy: 'vegetable')]
     private Collection $seasons;
 
     public function __construct()

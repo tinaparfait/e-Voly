@@ -31,7 +31,7 @@ class Season
     /**
      * @var Collection<int, Vegetable>
      */
-    #[ORM\ManyToMany(targetEntity: Vegetable::class, inversedBy: 'seasons')]
+    #[ORM\ManyToMany(targetEntity: Vegetable::class, mappedBy: 'seasons')]
     private Collection $vegetable;
 
     public function __construct()
